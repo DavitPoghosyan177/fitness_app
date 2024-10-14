@@ -5,7 +5,7 @@ class OnboardingPage2 extends StatelessWidget {
   final int currentPage;
   final int totalPages;
 
-  OnboardingPage2({required this.currentPage, required this.totalPages});
+  const OnboardingPage2({super.key, required this.currentPage, required this.totalPages});
 
   @override
   Widget build(BuildContext context) {

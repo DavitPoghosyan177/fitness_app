@@ -5,7 +5,7 @@ class OnboardingPage3 extends StatelessWidget {
   final int currentPage;
   final int totalPages;
 
-  OnboardingPage3({required this.currentPage, required this.totalPages});
+  const OnboardingPage3({super.key, required this.currentPage, required this.totalPages});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class OnboardingPage3 extends StatelessWidget {
                       (index) => buildDot(index),
                     ),
                   ),
-                  SizedBox(height: 40)
+                  const SizedBox(height: 40)
                 ],
               ),
             ),

@@ -1,7 +1,7 @@
-import 'package:fitness_app/presentation/pages/home_page/home_page.dart';
 import 'package:fitness_app/presentation/pages/on_boarding_pages/first_onbord_page.dart';
 import 'package:fitness_app/presentation/pages/on_boarding_pages/second_onbord_page.dart';
 import 'package:fitness_app/presentation/pages/on_boarding_pages/third_onbord_page.dart';
+import 'package:fitness_app/presentation/pages/signin_page/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -73,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     await prefs.setBool('onboardingFinished', true);
 
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (_) => HomeScreen()),
+                      MaterialPageRoute(builder: (_) => SignInPage()),
                     );
                   },
                 );
