@@ -27,6 +27,47 @@ class UpdateEmailEvent extends UserEvent {
   final String email;
 }
 
+class UpdateGenderEvent extends UserEvent {
+  const UpdateGenderEvent(this.gender);
+  final Gender gender;
+}
+
+class UpdateAgeEvent extends UserEvent {
+  const UpdateAgeEvent(this.age);
+  final String age;
+}
+
+class UpdateWeightEvent extends UserEvent {
+  const UpdateWeightEvent(this.weight);
+  final String weight;
+}
+
+class UpdateHeightEvent extends UserEvent {
+  const UpdateHeightEvent(this.height);
+  final String height;
+}
+
+class UpdateGoalEvent extends UserEvent {
+  const UpdateGoalEvent(this.goal);
+  final String goal;
+}
+
+class UpdateActivityEvent extends UserEvent {
+  const UpdateActivityEvent(this.activity);
+  final String activity;
+}
+
+class UpdateNickNameEvent extends UserEvent {
+  const UpdateNickNameEvent(this.nickName,
+     );
+  final String nickName;
+}
+
+class UpdateMobileNumberEvent extends UserEvent {
+  const UpdateMobileNumberEvent(this.mobileNumber);
+  final String mobileNumber;
+}
+
 class UpdateUserDataEvent extends UserEvent {
   const UpdateUserDataEvent(this.userEntity);
   final UserEntity userEntity;

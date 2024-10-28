@@ -7,18 +7,23 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fitness_app/data/repositories/auth_repository_imp.dart';
 import 'package:fitness_app/data/repositories/biometric_repository_imp.dart';
+import 'package:fitness_app/data/repositories/media_repository_imp.dart';
 import 'package:fitness_app/data/repositories/user_repository_imp.dart';
 import 'package:fitness_app/data/services/auth_service/auth_service.dart';
 import 'package:fitness_app/data/services/auth_service/auth_service_imp.dart';
 import 'package:fitness_app/data/services/biometric_service/biometric_service.dart';
 import 'package:fitness_app/data/services/biometric_service/biometric_service_imp.dart';
+import 'package:fitness_app/data/services/media_service/media_serivce.dart';
+import 'package:fitness_app/data/services/media_service/media_service_imp.dart';
 import 'package:fitness_app/data/services/user_service/user_service.dart';
 import 'package:fitness_app/data/services/user_service/user_service_imp.dart';
 import 'package:fitness_app/domain/repositories/auth_repository.dart';
 import 'package:fitness_app/domain/repositories/biometric_repository.dart';
+import 'package:fitness_app/domain/repositories/media_repository.dart';
 import 'package:fitness_app/domain/repositories/user_repository.dart';
 import 'package:fitness_app/presentation/logic/auth/auth_bloc.dart';
 import 'package:fitness_app/presentation/logic/biometric/biometric_bloc.dart';
+import 'package:fitness_app/presentation/logic/media/media_bloc.dart';
 import 'package:fitness_app/presentation/logic/user/user_bloc.dart';
 import 'package:fitness_app/presentation/pages/native_splash_page/native_splash_page.dart';
 import 'package:flutter/material.dart';
@@ -80,6 +85,14 @@ void main() async {
           create: (context) => BiometricRepositoryImp(
               RepositoryProvider.of<BiometricService>(context)),
         ),
+        RepositoryProvider<MediaService>(
+            create: (context) => MediaServiceImp(
+              FirebaseFirestore.instanceFor(app: firebaseApp),
+              FirebaseStorage.instance)),
+        RepositoryProvider<MediaRepository>(
+          create: (context) => MediaRepostoryImp(
+              mediaService: RepositoryProvider.of<MediaService>(context)),
+        ),
       ],
       child: MultiBlocProvider(providers: [
         BlocProvider(
@@ -93,6 +106,9 @@ void main() async {
             create: (context) => BiometricBloc(
                   RepositoryProvider.of<BiometricRepository>(context),
                 )),
+        BlocProvider(
+            create: (context) =>
+                MediaBloc(RepositoryProvider.of<MediaRepository>(context))),
       ], child: const MyApp()),
     ),
   );

@@ -10,7 +10,15 @@ sealed class UserState extends Equatable {
       this.photoUrl,
       this.posts,
       this.name,
-      this.fullname});
+      this.fullname,
+      this.gender,
+      this.age,
+      this.weight,
+      this.height,
+      this.goal,
+      this.activity,
+      this.nickName,
+      this.mobileNumber});
 
   final UserEntity? userEntity;
   final String? error;
@@ -19,6 +27,14 @@ sealed class UserState extends Equatable {
   final String? name;
   final String? displayName;
   final String? photoUrl;
+  final Gender? gender;
+  final String? age;
+  final String? weight;
+  final String? height;
+  final String? goal;
+  final String? activity;
+  final String? nickName;
+  final String? mobileNumber;
   final List<UserEntity>? users;
   final List<Map<String, dynamic>>? posts;
 
@@ -32,7 +48,15 @@ sealed class UserState extends Equatable {
         posts,
         users,
         name,
-        fullname
+        fullname,
+        gender,
+        age,
+        weight,
+        height,
+        goal,
+        activity,
+        nickName,
+        mobileNumber
       ];
 }
 
@@ -57,18 +81,32 @@ final class UserModelState extends UserState {
 }
 
 class UserDataUpdated extends UserState {
-  UserDataUpdated(UserState initState,
-      {UserEntity? userEntity, String? email, String? fullname})
-      : super(
+  UserDataUpdated(
+    UserState initState, {
+    UserEntity? userEntity,
+    String? email,
+    String? fullname,
+    Gender? gender,
+    String? age,
+    String? weight,
+    String? height,
+    String? goal,
+    String? activity,
+    String? nickName,
+    String? mobileNumber,
+  }) : super(
           userEntity: userEntity ?? initState.userEntity,
           email: email ?? initState.email,
           fullname: fullname ?? initState.fullname,
+          gender: gender ?? initState.gender,
+          age: age ?? initState.age,
+          weight: weight ?? initState.weight,
+          height: height ?? initState.height,
+          goal: goal ?? initState.goal,
+          activity: activity ?? initState.activity,
+          nickName: nickName ?? initState.nickName,
+          mobileNumber: mobileNumber ?? initState.mobileNumber,
         );
-}
-
-class MediaLoadSuccess extends UserState {
-  const MediaLoadSuccess(List<Map<String, dynamic>> posts)
-      : super(posts: posts);
 }
 
 final class UserStateSignedOut extends UserState {}

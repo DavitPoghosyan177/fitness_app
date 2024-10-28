@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitness_app/core/enum/gender.dart';
 import 'package:fitness_app/domain/entites/user_entity.dart';
 import 'package:fitness_app/domain/repositories/user_repository.dart';
 
@@ -19,7 +20,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<DeleteUserFromDbEvent>(_mapDeleteUserFromDbEventToState);
     on<UpdateNameEvent>(_mapUpdateNameEventToState);
     on<UpdateEmailEvent>(_mapUpdateEmailEventToState);
-   
+    on<UpdateGenderEvent>(_mapUpdateGenderEventToState);
+    on<UpdateAgeEvent>(_mapUpdateAgeEventToState);
+    on<UpdateWeightEvent>(_mapUpdateWeightEventToState);
+    on<UpdateHeightEvent>(_mapUpdateHeightEventToState);
+    on<UpdateGoalEvent>(_mapUpdateGoalEventToState);
+    on<UpdateActivityEvent>(_mapUpdateActivityEventToState);
+    on<UpdateNickNameEvent>(_mapUpdateNickNameEventToState);
+    on<UpdateMobileNumberEvent>(_mapUpdateMobileNumberEventToState);
   }
 
   final UserRepository userRepositories;
@@ -40,6 +48,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(UserFailed(state, e.toString()));
     }
   }
+
   FutureOr<void> _mapUpdateNameEventToState(
       UpdateNameEvent event, Emitter<UserState> emit) {
     emit(UserDataUpdated(state, fullname: event.fullname));
@@ -50,6 +59,45 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     emit(UserDataUpdated(state, email: event.email));
   }
 
+  FutureOr<void> _mapUpdateGenderEventToState(
+      UpdateGenderEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, gender: event.gender));
+  }
+
+  FutureOr<void> _mapUpdateAgeEventToState(
+      UpdateAgeEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, age: event.age));
+  }
+
+  FutureOr<void> _mapUpdateWeightEventToState(
+      UpdateWeightEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, weight: event.weight));
+  }
+
+  FutureOr<void> _mapUpdateHeightEventToState(
+      UpdateHeightEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, height: event.height));
+  }
+
+  FutureOr<void> _mapUpdateGoalEventToState(
+      UpdateGoalEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, goal: event.goal));
+  }
+
+  FutureOr<void> _mapUpdateActivityEventToState(
+      UpdateActivityEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, activity: event.activity));
+  }
+
+  FutureOr<void> _mapUpdateNickNameEventToState(
+      UpdateNickNameEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, nickName: event.nickName));
+  }
+
+  FutureOr<void> _mapUpdateMobileNumberEventToState(
+      UpdateMobileNumberEvent event, Emitter<UserState> emit) {
+    emit(UserDataUpdated(state, mobileNumber: event.mobileNumber));
+  }
 
   FutureOr<void> _mapAddUserModelEventToState(
       AddUserModelEvent event, Emitter<UserState> emit) {

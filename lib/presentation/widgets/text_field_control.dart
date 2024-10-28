@@ -4,20 +4,22 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String hintText;
   final bool isPassword;
-  final TextEditingController? controller; // Optional parameter for controller
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;  // Validator function added
 
   const CustomTextField({
     super.key,
     required this.label,
     required this.hintText,
     this.isPassword = false,
-    this.controller, // Initialize the optional controller
+    this.controller,
+    this.validator,  // Pass the validator function
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller, // Use the controller if provided
+    return TextFormField(  // Changed to TextFormField
+      controller: controller,
       obscureText: isPassword,
       style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
@@ -26,12 +28,13 @@ class CustomTextField extends StatelessWidget {
         hintText: hintText,
         hintStyle: const TextStyle(color: Colors.black),
         filled: true,
-        fillColor: Colors.white, 
+        fillColor: Colors.white,
         suffixStyle: const TextStyle(color: Colors.green),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
+      validator: validator,  // Apply the validator function
     );
   }
 }

@@ -1,12 +1,15 @@
 import 'package:fitness_app/data/repositories/biometric_repository_imp.dart';
 import 'package:fitness_app/data/services/biometric_service/biometric_service_imp.dart';
 import 'package:fitness_app/presentation/logic/biometric/biometric_bloc.dart';
+import 'package:fitness_app/presentation/pages/first_setup_page/first_setup_page.dart';
 import 'package:fitness_app/presentation/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BiometricPage extends StatefulWidget {
-  const BiometricPage({super.key});
+  final bool isFromSignIn;
+
+  const BiometricPage({super.key, required this.isFromSignIn});
 
   @override
   State<BiometricPage> createState() => _BiometricPageState();
@@ -33,6 +36,21 @@ class _BiometricPageState extends State<BiometricPage> {
                   backgroundColor: Colors.green,
                 ),
               );
+              if (widget.isFromSignIn) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
+              } else {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FitnessScreen(),
+                  ),
+                );
+              }
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
@@ -44,12 +62,13 @@ class _BiometricPageState extends State<BiometricPage> {
           }
         },
         builder: (context, state) {
-          final bool isAuthenticated = state is BiometricAuthenticated && state.isAuthenticated;
+          final bool isAuthenticated =
+              state is BiometricAuthenticated && state.isAuthenticated;
 
           return Scaffold(
             body: SingleChildScrollView(
               child: Container(
-                width:  MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 color: const Color.fromARGB(255, 87, 83, 83),
                 padding: const EdgeInsets.all(2.0),
@@ -120,11 +139,21 @@ class _BiometricPageState extends State<BiometricPage> {
                     if (!isAuthenticated)
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()),
-                          );
+                          if (widget.isFromSignIn) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
+                          } else {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const FitnessScreen(),
+                              ),
+                            );
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
@@ -141,16 +170,24 @@ class _BiometricPageState extends State<BiometricPage> {
                                 color: Colors.white)),
                       ),
                     const SizedBox(height: 20.0),
-                    
                     ElevatedButton(
                       onPressed: () {
                         if (state is BiometricAuthenticated) {
                           if (state.isAuthenticated) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()),
-                            );
+                            if (widget.isFromSignIn) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const FitnessScreen()),
+                              );
+                            }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

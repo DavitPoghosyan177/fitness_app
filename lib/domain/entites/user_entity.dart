@@ -1,3 +1,4 @@
+import 'package:fitness_app/core/enum/gender.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../data/models/user_model.dart';
 
@@ -7,7 +8,15 @@ class UserEntity {
     this.email,
     this.displayName,
     this.photoUrl,
-    this.fullname
+    this.fullname,
+    this.gender,
+    this.age,
+    this.weight,
+    this.height,
+    this.goal,
+    this.activity,
+    this.nickName,
+    this.mobileNumber
 
   });
   factory UserEntity.fromModel(UserModel userModel) {
@@ -16,7 +25,18 @@ class UserEntity {
         email: userModel.email,
         fullname: userModel.fullname,
         displayName: userModel.displayName,
-        photoUrl: userModel.photoUrl);
+        photoUrl: userModel.photoUrl,
+        gender: userModel.gender,
+        age: userModel.age,
+        weight: userModel.weight,
+        height: userModel.height,
+        goal: userModel.goal,
+        activity: userModel.activity,
+        nickName: userModel.nickName,
+        mobileNumber: userModel.mobileNumber
+
+
+        );
   }
   UserModel toModel(){
     return UserModel(
@@ -24,7 +44,15 @@ class UserEntity {
         email: email,
         displayName: displayName,
         photoUrl: photoUrl,
-        fullname: fullname
+        fullname: fullname,
+        gender: gender,
+        age: age,
+        weight: weight,
+        height: height,
+        goal: goal,
+        activity: activity,
+        nickName: nickName,
+        mobileNumber: mobileNumber
     );
   }
   final String? userId;
@@ -36,5 +64,20 @@ class UserEntity {
   final String? photoUrl;
   @JsonKey(includeIfNull: false)
   final String? fullname;
-
+ @JsonKey(includeIfNull: false)
+  final Gender? gender;
+   @JsonKey(includeIfNull: false)
+  final String? age;
+   @JsonKey(includeIfNull: false)
+  final String? weight;
+   @JsonKey(includeIfNull: false)
+  final String? height;
+   @JsonKey(includeIfNull: false)
+  final String? goal;
+   @JsonKey(includeIfNull: false)
+  final String? activity;
+   @JsonKey(includeIfNull: false)
+  final String? nickName;
+   @JsonKey(includeIfNull: false)
+  final String? mobileNumber;
 }

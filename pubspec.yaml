@@ -46,12 +46,13 @@ dependencies:
   firebase_crashlytics: ^3.5.5
   bloc: ^8.1.4
   equatable: ^2.0.5
-
+  image_picker: ^1.1.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.2.3
   flutter_bloc: ^8.1.6
+  email_validator: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -64,19 +65,12 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter_native_splash:
-  background_image: assets/images/2 - A - On boarding.png 
-  color: "#ffffff"
-  image: assets/images/weeds_04_2048x2048_n.png
-  color_dark: "#121212"
-  image_dark: assets/images/weeds_04_2048x2048_n.png
-
-  android_12:
-    image: assets/images/weeds_04_2048x2048_n.png
-    icon_background_color: "#ffffff"
-    image_dark: assets/images/weeds_04_2048x2048_n.png
-    icon_background_color_dark: "#121212"
-
+  background_image: "assets/images/weeds_04_2048x2048_n.png"
+  background_image_dark: "assets/images/native_splash_screen.jpg"  
   web: false
+  android_gravity: fill
+  fullscreen: true
+  android_12:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
