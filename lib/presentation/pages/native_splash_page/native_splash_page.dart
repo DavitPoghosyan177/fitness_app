@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (onboardingFinished) {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => SignInPage()),
+        MaterialPageRoute(builder: (_) => const SignInPage()),
       );
     } else {
       Navigator.of(context).pushReplacement(
