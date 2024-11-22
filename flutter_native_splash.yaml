@@ -1,0 +1,11 @@
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/fitness-icon-2048x2048-482aqxni.png
+  color_dark: "#121212"
+  image_dark: assets/images/fitness-icon-2048x2048-482aqxni.png
+
+  android_12:
+    image: assets/images/fitness-icon-2048x2048-482aqxni.png
+    image_dark: assets/images/fitness-icon-2048x2048-482aqxni.png
+
+  web: false

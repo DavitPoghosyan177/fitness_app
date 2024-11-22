@@ -5,7 +5,7 @@ class OnboardingPage1 extends StatelessWidget {
   final int currentPage;
   final int totalPages;
 
-  OnboardingPage1({required this.currentPage, required this.totalPages});
+  const OnboardingPage1({super.key, required this.currentPage, required this.totalPages});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,9 @@ class OnboardingPage1 extends StatelessWidget {
             right: 0,
             child: Container(
               padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: const Color(0xFFC6A0E5),
-                borderRadius: const BorderRadius.only(
+              decoration: const BoxDecoration(
+                color: Color(0xFFC6A0E5),
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
@@ -56,7 +56,7 @@ class OnboardingPage1 extends StatelessWidget {
                       (index) => buildDot(index),
                     ),
                   ),
-                  SizedBox(height: 15)
+                  const SizedBox(height: 15)
                 ],
               ),
             ),
