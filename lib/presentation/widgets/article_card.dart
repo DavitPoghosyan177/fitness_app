@@ -52,7 +52,7 @@ class ArticleCard extends StatelessWidget {
                 ),
               ),
             ),
-            Image.asset(
+            Image.network(
               imageAsset,
               fit: BoxFit.cover,
             ),

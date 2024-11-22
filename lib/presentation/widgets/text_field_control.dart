@@ -5,7 +5,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isPassword;
   final TextEditingController? controller;
-  final String? Function(String?)? validator;  // Validator function added
+  final String? Function(String?)? validator;  
 
   const CustomTextField({
     super.key,
@@ -13,12 +13,12 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.isPassword = false,
     this.controller,
-    this.validator,  // Pass the validator function
+    this.validator,  
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(  // Changed to TextFormField
+    return TextFormField(  
       controller: controller,
       obscureText: isPassword,
       style: const TextStyle(color: Colors.black),
@@ -34,7 +34,7 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      validator: validator,  // Apply the validator function
+      validator: validator,  
     );
   }
 }

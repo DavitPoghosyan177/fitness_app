@@ -87,8 +87,8 @@ void main() async {
         ),
         RepositoryProvider<MediaService>(
             create: (context) => MediaServiceImp(
-              FirebaseFirestore.instanceFor(app: firebaseApp),
-              FirebaseStorage.instance)),
+                FirebaseFirestore.instanceFor(app: firebaseApp),
+                FirebaseStorage.instance)),
         RepositoryProvider<MediaRepository>(
           create: (context) => MediaRepostoryImp(
               mediaService: RepositoryProvider.of<MediaService>(context)),
@@ -107,8 +107,12 @@ void main() async {
                   RepositoryProvider.of<BiometricRepository>(context),
                 )),
         BlocProvider(
-            create: (context) =>
-                MediaBloc(RepositoryProvider.of<MediaRepository>(context))),
+          create: (context) => MediaBloc(
+            RepositoryProvider.of<MediaRepository>(context),
+          )
+            ..add(LoadVideosEvent())
+            ..add(LoadArticlesEvent()),
+        ),
       ], child: const MyApp()),
     ),
   );

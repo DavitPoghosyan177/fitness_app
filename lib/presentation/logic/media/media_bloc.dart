@@ -14,6 +14,8 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
     on<UploadPictureFromGalleryEvent>(
         _mapOnUploadPictureFromGalleryEventToState);
     on<UploadProfilePhotoEvent>(_mapUploadProfilePhotoEventToState);
+    on<LoadVideosEvent>(_mapOnUploadVideosEventToState);
+    on<LoadArticlesEvent>(_mapOnLoadArticlesEventToState); 
   }
   final MediaRepository _mediaRepository;
 
@@ -47,6 +49,29 @@ class MediaBloc extends Bloc<MediaEvent, MediaState> {
       emit(const MediaUpdated());
     } catch (e) {
       emit(MediaFailed(error: e.toString()));
+    }
+  }
+ FutureOr<void> _mapOnUploadVideosEventToState(
+    LoadVideosEvent event, Emitter<MediaState> emit) async {
+  try {
+    emit(VideoLoadingState(state));
+
+    await for (final videos in _mediaRepository.getVideos()) {
+      emit(VideoLoadedState(state, videos));
+    }
+  } catch (e) {
+    emit(VideoErrorState(e.toString()));
+  }
+}
+ Future<void> _mapOnLoadArticlesEventToState(
+      LoadArticlesEvent event, Emitter<MediaState> emit) async {
+    try {
+      emit(ArticleLoadingState(state));
+      await for (final articles in _mediaRepository.getArticles()) {
+        emit(ArticleLoadedState(state, articles));
+      }
+    } catch (e) {
+      emit(ArticleErrorState(e.toString()));
     }
   }
 }

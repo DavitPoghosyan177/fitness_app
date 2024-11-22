@@ -17,9 +17,8 @@ class ArticleDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[800],
-     appBar: AppBar(
-      
+        backgroundColor: Colors.grey[800],
+        appBar: AppBar(
           title: const Text(
             'Resources',
             style: TextStyle(
@@ -36,63 +35,63 @@ class ArticleDetailPage extends StatelessWidget {
             Icon(Icons.person, color: Color(0xFFE0C3FC)),
             SizedBox(width: 20),
           ],
-          backgroundColor: Colors.grey[800],),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              title,
-              style: GoogleFonts.poppins(
-                color: Colors.yellow,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'Published On September 15',
-              style: GoogleFonts.poppins(
-                color: Colors.grey,
-                fontSize: 14,
-              ),
-            ),
-            const SizedBox(height: 20),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                imageAsset,
-                fit: BoxFit.cover,
-                height: 200,
-                width: double.infinity,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              content,
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontSize: 16,
-                height: 1.5,
-              ),
-            ),
-            const SizedBox(height: 20),
-            buildTipSection(
-              'Plan Your Routine:',
-              'Before starting any workout, plan your routine for the week. Focus on different muscle groups on different days to allow for adequate rest and recovery.',
-            ),
-            buildTipSection(
-              'Warm-Up:',
-              'Begin your workout with a proper warm-up session. This could include light cardio exercises like jogging or jumping jacks, as well as dynamic stretches to prepare your muscles for the upcoming workout.',
-            ),
-            const SizedBox(height: 20),
-          ],
+          backgroundColor: Colors.grey[800],
         ),
-      ),
-      bottomNavigationBar: const BottomNavBar()
-    );
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Text(
+                title,
+                style: GoogleFonts.poppins(
+                  color: Colors.yellow,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Published On September 15',
+                style: GoogleFonts.poppins(
+                  color: Colors.grey,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(height: 20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  imageAsset,
+                  fit: BoxFit.fitHeight,
+                  height: 200,
+                  width: double.infinity,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                content,
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 16,
+                  height: 1.5,
+                ),
+              ),
+              const SizedBox(height: 20),
+              buildTipSection(
+                'Plan Your Routine:',
+                'Before starting any workout, plan your routine for the week. Focus on different muscle groups on different days to allow for adequate rest and recovery.',
+              ),
+              buildTipSection(
+                'Warm-Up:',
+                'Begin your workout with a proper warm-up session. This could include light cardio exercises like jogging or jumping jacks, as well as dynamic stretches to prepare your muscles for the upcoming workout.',
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+        bottomNavigationBar: const BottomNavBar());
   }
 
   Widget buildTipSection(String title, String description) {

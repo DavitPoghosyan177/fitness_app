@@ -64,7 +64,7 @@ class FitnessScreen extends StatelessWidget {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const GenderSelectionScreen()),

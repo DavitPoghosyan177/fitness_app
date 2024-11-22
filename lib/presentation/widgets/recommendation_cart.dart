@@ -1,22 +1,32 @@
-import 'package:fitness_app/presentation/pages/video_view_page/video_view_page.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:fitness_app/presentation/pages/video_view_page/video_view_page.dart';
 
 class RecommendationCard extends StatelessWidget {
   final String title;
   final String duration;
   final String kcal;
-  final String imagePath;
+  final String videoUrl;  
 
   const RecommendationCard({
     required this.title,
     required this.duration,
     required this.kcal,
-    required this.imagePath,
+    required this.videoUrl,  
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final YoutubePlayerController controller = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(videoUrl) ?? '',
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+        loop: false,
+      ),
+    );
+
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -28,20 +38,20 @@ class RecommendationCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Image.asset(
-                  imagePath,
-                  height: 100,
-                  fit: BoxFit.cover,
+                YoutubePlayer(
+                  controller: controller,
+                  liveUIColor: Colors.amber,
+                  showVideoProgressIndicator: true,
                 ),
                 Positioned(
                   right: 10,
                   bottom: 1,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const VideoViewPage(),
+                          builder: (context) => VideoViewPage(videoUrl: videoUrl),
                         ),
                       );
                     },

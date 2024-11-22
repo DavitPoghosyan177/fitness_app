@@ -23,4 +23,12 @@ class MediaRepostoryImp implements MediaRepository {
   Future<void> uploadProfilePicture(String userId, File file) async {
     await mediaService.uploadProfilePicture(userId, file);
   }
+   @override
+  Stream<List<Map<String, dynamic>>> getVideos() {
+    return mediaService.getVideos();
+  }
+  @override
+  Stream<List<Map<String, dynamic>>> getArticles() {
+    return mediaService.getArticles();
+  }
 }

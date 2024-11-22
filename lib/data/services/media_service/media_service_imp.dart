@@ -29,7 +29,8 @@ class MediaServiceImp implements MediaService {
     }
     return null;
   }
-      @override
+
+  @override
   Future<void> uploadProfilePicture(String userId, File file) async {
     final Reference ref = firebaseStorage
         .ref('usersAvatar/')
@@ -40,5 +41,23 @@ class MediaServiceImp implements MediaService {
         .collection('users')
         .doc(userId)
         .update({'photoUrl': downloadUrl});
+  }
+
+  @override
+  Stream<List<Map<String, dynamic>>> getVideos() {
+    return firebaseFirestore.collection('videos').snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) {
+        return {
+          "title": doc.data()["title"] ?? "",
+          "video_url": doc.data()["video_url"] ?? "",
+        };
+      }).toList();
+    });
+  }
+  @override
+  Stream<List<Map<String, dynamic>>> getArticles() {
+    return firebaseFirestore.collection('articles').snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => doc.data()).toList();
+    });
   }
 }

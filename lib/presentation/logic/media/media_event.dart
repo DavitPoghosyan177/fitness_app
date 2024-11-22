@@ -16,3 +16,6 @@ class UploadProfilePhotoEvent extends MediaEvent {
   final String userId;
   final File file;
 }
+class LoadVideosEvent extends MediaEvent {}
+
+class LoadArticlesEvent extends MediaEvent {}  

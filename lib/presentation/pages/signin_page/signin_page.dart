@@ -106,6 +106,7 @@ class _SignInPageState extends State<SignInPage> {
                               controller: _passwordController,
                               label: 'Password',
                               hintText: '********',
+                              isPassword: true,
                             ),
                             Align(
                               alignment: Alignment.bottomRight,

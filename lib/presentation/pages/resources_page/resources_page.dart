@@ -70,12 +70,13 @@ class ResourcesScreen extends StatelessWidget {
             ),
           ),
         ),
-        body:  TabBarView(
+        body:  const TabBarView(
           children: [
             WorkoutVideosPage(),
             ArticlesTipsPage(),
           ],
         ),
+        
       ),
     );
   }

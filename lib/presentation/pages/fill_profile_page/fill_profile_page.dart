@@ -2,6 +2,7 @@ import 'package:fitness_app/domain/entites/user_entity.dart';
 import 'package:fitness_app/presentation/logic/media/media_bloc.dart';
 import 'package:fitness_app/presentation/logic/user/user_bloc.dart';
 import 'package:fitness_app/presentation/pages/first_setup_page/first_setup_page.dart';
+import 'package:fitness_app/presentation/pages/resources_page/resources_page.dart';
 import 'package:fitness_app/presentation/widgets/text_field_for_fill_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -215,6 +216,11 @@ class _FillProfileScreenState extends State<FillProfileScreen> {
                                   ),
                                 );
                           }
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ResourcesScreen()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
